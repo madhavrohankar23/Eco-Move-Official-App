@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌿 Eco-Move Nagpur
 ### Intelligent Multimodal Public Transit & Carbon-Aware Journey Planner
 
@@ -173,3 +174,6 @@ Append new bus corridors directly into `src/data/network.json`:
 * **Project:** Final Year Project (FYP) — Department of Computer Science & Engineering
 * **Institution:** G.H. Raisoni College of Engineering (GHRE), Nagpur
 * **Domain:** Intelligent Transportation Systems (ITS), Sustainable Urban Mobility
+=======
+# Eco-Move-Official-App
+>>>>>>> a3eabb39fe1dc270f2725e72f3c6aa2c433dc976
