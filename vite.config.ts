@@ -58,10 +58,10 @@ function emailServerPlugin() {
 
               // Read fresh SMTP / Resend configuration from .env
               const env = getDynamicEnv();
-              const host = env["SMTP_HOST"] || process.env["SMTP_HOST"] || "smtp.gmail.com";
+              const host = env["SMTP_HOST"] || process.env["SMTP_HOST"] || "";
               const port = Number(env["SMTP_PORT"] || process.env["SMTP_PORT"] || 587);
-              const user = (env["SMTP_USER"] || process.env["SMTP_USER"] || "ecomove.teams@gmail.com").trim();
-              const rawPass = (env["SMTP_PASS"] || process.env["SMTP_PASS"] || "abmwrmjjlknmwuai").trim();
+              const user = (env["SMTP_USER"] || process.env["SMTP_USER"] || "").trim();
+              const rawPass = (env["SMTP_PASS"] || process.env["SMTP_PASS"] || "").trim();
               const pass = rawPass.replace(/\s+/g, ""); // strip any spaces in app password
               const from =
                 env["SMTP_FROM"] ||
@@ -200,16 +200,7 @@ export default defineConfig(({ command, mode }) => {
       ...(command === "build"
         ? [
             nitro({
-              defaultPreset: "cloudflare-module",
-              output: {
-                dir: "dist",
-                serverDir: "dist/server",
-                publicDir: "dist/client",
-              },
-              cloudflare: {
-                nodeCompat: true,
-                deployConfig: true,
-              },
+              defaultPreset: "vercel",
             }),
           ]
         : []),
