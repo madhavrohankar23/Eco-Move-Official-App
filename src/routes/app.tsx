@@ -2079,9 +2079,9 @@ function Planner() {
 
       {/* ── 2. GOOGLE MAPS FLOATING / DOCKED WHITE CARD ── */}
       {cardOpen && (
-        <section className="absolute left-20 top-3 z-[1001] flex h-[calc(100vh-24px)] w-[390px] flex-col overflow-hidden rounded-3xl border border-border/60 bg-white/95 shadow-2xl backdrop-blur-md transition-all duration-300 dark:bg-card/95 sm:w-[420px]">
+        <section className="absolute inset-0 z-[1005] sm:inset-auto sm:left-20 sm:top-3 sm:z-[1001] flex sm:h-[calc(100vh-24px)] w-full sm:w-[420px] flex-col overflow-hidden sm:rounded-3xl border-0 sm:border sm:border-border/60 bg-white/100 sm:bg-white/95 shadow-2xl sm:backdrop-blur-md transition-all duration-300 dark:bg-card dark:sm:bg-card/95">
           {/* Top Mode Bar */}
-          <header className="flex items-center justify-between border-b border-border bg-gradient-to-r from-primary/5 via-card to-card px-4 py-3">
+          <header className="flex items-center justify-between border-b border-border bg-gradient-to-r from-primary/5 via-card to-card px-4 py-3 pt-safe sm:pt-3">
             <div className="flex items-center gap-2">
               <span
                 className={`flex size-7 items-center justify-center rounded-xl text-white shadow-sm ${
@@ -3110,22 +3110,26 @@ function Planner() {
       </div>
 
       {/* ── 4. FLOATING GOOGLE MAPS LAYERS BUTTON (Bottom-Right, Left of Chatbot) ── */}
-      <GoogleMapsLayersFAB
-        showMetroStations={showMetroStations}
-        onToggleMetroStations={() => setShowMetroStations((v) => !v)}
-        showBusStops={showBusStops}
-        onToggleBusStops={() => setShowBusStops((v) => !v)}
-        mapStyle={mapStyle}
-        onSelectMapStyle={setMapStyle}
-      />
+      <div className={cardOpen ? "hidden sm:block" : "block"}>
+        <GoogleMapsLayersFAB
+          showMetroStations={showMetroStations}
+          onToggleMetroStations={() => setShowMetroStations((v) => !v)}
+          showBusStops={showBusStops}
+          onToggleBusStops={() => setShowBusStops((v) => !v)}
+          mapStyle={mapStyle}
+          onSelectMapStyle={setMapStyle}
+        />
+      </div>
 
       {/* ── 5. FLOATING AI TRANSIT CHATBOT (Bottom-Right Corner) ── */}
-      <AiTransitChatbot
-        currentJourney={activeRailItem === "directions" ? journey : null}
-        originName={origin?.name}
-        destinationName={destination?.name}
-        selectedJourneyIndex={selected}
-      />
+      <div className={cardOpen ? "hidden sm:block" : "block"}>
+        <AiTransitChatbot
+          currentJourney={activeRailItem === "directions" ? journey : null}
+          originName={origin?.name}
+          destinationName={destination?.name}
+          selectedJourneyIndex={selected}
+        />
+      </div>
 
       {/* ── 5. DEDICATED BUS TIMETABLE PANEL (Right-Hand Side Drawer) ── */}
       {selectedBusTimetable && (
